@@ -1,7 +1,8 @@
 
 # GitHub Copilot Healthcare Training
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-repo/ci.yml?branch=main)](https://github.com/your-repo/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/alextaylor-the-dev/github-copilot-healthcare-training/ci.yml?branch=main)](https://github.com/alextaylor-the-dev/github-copilot-healthcare-training/actions)
+
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 This repository is designed for training developers on using GitHub Copilot effectively in the context of healthcare software development. The focus is on:

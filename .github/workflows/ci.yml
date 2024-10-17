@@ -1,27 +1,38 @@
-
-name: CI
+name: Tim's Workflow Dispatch CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+  # pull_request:
+  #   branches:
+  #     - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - name: Ensure latest stable GitHub Actions versions
+      run: |
+        echo "Checking latest stable versions of actions"
+        LATEST_CHECKOUT=$(curl -s https://api.github.com/repos/actions/checkout/releases/latest | jq -r .tag_name)
+        LATEST_SETUP_PYTHON=$(curl -s https://api.github.com/repos/actions/setup-python/releases/latest | jq -r .tag_name)
+        echo "Latest actions/checkout: $LATEST_CHECKOUT"
+        echo "Latest actions/setup-python: $LATEST_SETUP_PYTHON"
+        # You can decide whether to fail the workflow if the versions aren't correct, or just output a warning
+        
+    - name: Checkout code
+      uses: actions/checkout@v2 # Update to the latest version if needed
+
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2 # Update to the latest version if needed
       with:
         python-version: '3.x'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
     - name: Run tests
       run: |
         python -m unittest discover tests
